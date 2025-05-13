@@ -83,4 +83,4 @@ def main(data_dir: str, test_size: float, random_state: int):
         print(f"--- {name} Evaluation ---")
         print(classification_report(y_test, preds))
         print("Confusion matrix:")
-        print(confusion_matrix(y_test, preds))
+        print(confusion_matrix(y_test, preds))l
