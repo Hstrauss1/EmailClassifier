@@ -34,8 +34,10 @@ pip install scikit-learn nltk numpy pandas matplotlib
 ```
 
 ## 🗂️ Data
-
-The project assumes access to a subset of the Enron email dataset, specifically:
+We are using the Enron email dataset, found in this link https://www.kaggle.com/datasets/wcukierski/enron-email-dataset . Make sure to 
+unzip the file completely as we had some problems doing that because of its large size.
+We created the following path to the emails that we were interested on for our project. 
+Replace this on your side with a path to the Sent_Items_only directory in the Enron dataset sure you can access the Sent_Items_only
 ```
 /WAVE/projects/CSEN-140-Sp25/HHJ140Proj/Sent_Items_only
 ```
@@ -47,8 +49,9 @@ You can run the notebook step-by-step to:
 
 1. Clean and preprocess the email data.
 2. Vectorize the text with TF-IDF.
-3. Reduce dimensions with PCA.
-4. Train and evaluate a neural network.
+3. Train traditional ML/Data Science Methods
+4. Train a Neural Network
+5. Check how we are optimizing the values for each of these models.
 
 ## 📈 Results
 
@@ -57,4 +60,3 @@ Performance is evaluated using metrics such as precision, recall, and F1-score, 
 ## 📌 Notes
 
 - The project is sensitive to the dataset structure and email formatting.
-- Make sure NLTK stopwords are downloaded before use (`nltk.download('stopwords')` is included).
