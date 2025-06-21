@@ -30,3 +30,4 @@ Built on the Enron corpus and a scikit-learn pipeline that cleans, vectorises, a
 * Random Forest  
 * k-NN (cosine)  
 * **Linear SVC** ← best so far (~0.9 accuracy with C ≈ 0.4)
+* Further we had a comparison testbench with a RNN more information in the branch and final code file
