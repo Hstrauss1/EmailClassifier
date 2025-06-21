@@ -1,62 +1,32 @@
-# Email Author Classification using TF-IDF and Neural Network with PCA
+### CHECK The  "FinalFolder" for the associated paper with results and final code
 
-This project is focused on classifying the authors of email messages based on their content. It uses data from the Enron email dataset and implements a machine learning pipeline involving text preprocessing, TF-IDF vectorization, dimensionality reduction via PCA, and classification using a neural network.
+#  Email Author Classification with TF-IDF & Classical ML
 
-## 📁 Project Structure
+Classifies the **sender** of an email purely from its text.  
+Built on the Enron corpus and a scikit-learn pipeline that cleans, vectorises, and feeds messages into several traditional classifiers (best so far: a tuned Linear SVC).
 
-- **Text Preprocessing**: Emails are cleaned by removing URLs, punctuation, and stopwords, and then stemmed.
-- **Vectorization**: Processed text is transformed into TF-IDF vectors with unigrams and bigrams.
-- **Filtering**: Authors with fewer than 2 emails are removed to ensure meaningful learning.
-- **Dimensionality Reduction**: PCA is applied to reduce the feature space and improve model performance.
-- **Modeling**: A neural network is trained to classify authors based on their email content.
+---
 
-## 🚀 Features
+##  Project Map
 
-- Efficient text cleaning using NLTK.
-- Scalable vectorization using `TfidfVectorizer`.
-- Dimensionality reduction using `PCA` from `sklearn`.
-- Neural network built using `MLPClassifier` from `sklearn`.
-- Evaluation via classification report and confusion matrix.
+| Stage | What Happens |
+|-------|--------------|
+| **1. Ingest** | Recursively loads every file in `Sent_Items_only/**/sent_items/`, storing the raw body and owner. |
+| **2. Clean** | Lower-cases, strips URLs / punctuation, removes NLTK stop-words, then stems **and** lemmatises each token. |
+| **3. Vectorise** | `TfidfVectorizer` with unigrams + bigrams, `min_df=5`. |
+| **4. Filter** | Drops authors with \< 2 messages to avoid single-sample classes. |
+| **5. Split** | 70 % training / 30 % test (`random_state=36`). |
+| **6. Model** | Out-of-the-box models ⬇️ — followed by C-sweep tuning for Linear SVC. |
+| **7. Evaluate** | Accuracy, precision/recall/F1, and confusion matrices. Optional plots show “accuracy vs C”. |
 
-## 🧪 Requirements
+### Models Tried
 
-- Python 3.x
-- Scikit-learn
-- NLTK
-- NumPy
-- Pandas
-- Matplotlib (for visualization)
-
-Install dependencies with:
-
-```bash
-pip install scikit-learn nltk numpy pandas matplotlib
-```
-
-## 🗂️ Data
-We are using the Enron email dataset, found in this link https://www.kaggle.com/datasets/wcukierski/enron-email-dataset . Make sure to 
-unzip the file completely as we had some problems doing that because of its large size.
-We created the following path to the emails that we were interested on for our project. 
-Replace this on your side with a path to the Sent_Items_only directory in the Enron dataset sure you can access the Sent_Items_only
-```
-/WAVE/projects/CSEN-140-Sp25/HHJ140Proj/Sent_Items_only
-```
-Ensure this directory structure exists and contains subfolders for each user, each with a `sent_items` folder of email files.
-
-## 🛠️ Usage
-
-You can run the notebook step-by-step to:
-
-1. Clean and preprocess the email data.
-2. Vectorize the text with TF-IDF.
-3. Train traditional ML/Data Science Methods
-4. Train a Neural Network
-5. Check how we are optimizing the values for each of these models.
-
-## 📈 Results
-
-Performance is evaluated using metrics such as precision, recall, and F1-score, along with confusion matrices for insight into misclassifications.
-
-## 📌 Notes
-
-- The project is sensitive to the dataset structure and email formatting.
+* Multinomial NB  
+* Logistic Regression  
+* Ridge Classifier  
+* SGD (Log-loss)  
+* Passive-Aggressive  
+* Decision Tree  
+* Random Forest  
+* k-NN (cosine)  
+* **Linear SVC** ← best so far (~0.9 accuracy with C ≈ 0.4)
